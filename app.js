@@ -4,6 +4,12 @@ import { checkHealth } from "./controller/health.js";
 import { login, register } from "./controller/auth.js";
 import todoController from "./controller/todo.js";
 import isAuth from "./middleware/isAuth.js";
+import cors from "cors"
+
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 const app = express();
 const PORT = 3000;
@@ -11,6 +17,7 @@ const PORT = 3000;
 // middleware for req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
 
 // initialize database
 dbInit();
